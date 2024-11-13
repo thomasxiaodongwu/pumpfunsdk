@@ -25,12 +25,17 @@ const main = async () => {
 
   let sdk = new PumpFunSDK(provider);
 
-  let createEvent = sdk.addEventListener("createEvent", (event) => {
-    console.log("createEvent", event);
+  let createEvent = sdk.addEventListener("createEvent", async (event) => {
+    let boundingCurveAccount = await sdk.getBondingCurveAccount(event.mint);
+    if(boundingCurveAccount) {
+      if(boundingCurveAccount.realTokenReserves > 1000){
+        console.log("createEvent", event, boundingCurveAccount);
+      }
+    }
   });
   console.log("createEvent", createEvent);
 
-  let tradeEvent = sdk.addEventListener("tradeEvent", (event) => {
+  /*let tradeEvent = sdk.addEventListener("tradeEvent", (event) => {
     console.log("tradeEvent", event);
   });
   console.log("tradeEvent", tradeEvent);
@@ -38,7 +43,7 @@ const main = async () => {
   let completeEvent = sdk.addEventListener("completeEvent", (event) => {
     console.log("completeEvent", event);
   });
-  console.log("completeEvent", completeEvent);
+  console.log("completeEvent", completeEvent);*/
 };
 
 main();

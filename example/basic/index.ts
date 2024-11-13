@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import fs from "fs";
-import { Connection, Keypair, LAMPORTS_PER_SOL } from "@solana/web3.js";
+import {Connection, Keypair, LAMPORTS_PER_SOL, PublicKey} from "@solana/web3.js";
 import { DEFAULT_DECIMALS, PumpFunSDK } from "../../src";
 import NodeWallet from "@coral-xyz/anchor/dist/cjs/nodewallet";
 import { AnchorProvider } from "@coral-xyz/anchor";
@@ -151,4 +151,18 @@ const main = async () => {
   }
 };
 
-main();
+const mainTest = async () => {
+  dotenv.config();
+  let connection = new Connection(process.env.HELIUS_RPC_URL || "");
+  let wallet = new NodeWallet(new Keypair());
+  const provider = new AnchorProvider(connection, wallet, {
+    commitment: "finalized",
+  });
+  let sdk = new PumpFunSDK(provider);
+  const publicKey = new PublicKey('8e62anoafhqXRtiFhYK4VLQ35zb6G9w2MtbzzKwRpump');
+  let boundingCurveAccount = await sdk.getBondingCurveAccount(publicKey);
+  console.log("Bonding curve after create and buy", boundingCurveAccount);
+}
+
+mainTest();
+
