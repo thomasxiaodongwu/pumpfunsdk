@@ -28,7 +28,7 @@ const main = async () => {
   let createEvent = sdk.addEventListener("createEvent", async (event) => {
     let boundingCurveAccount = await sdk.getBondingCurveAccount(event.mint);
     if(boundingCurveAccount) {
-      if(boundingCurveAccount.realTokenReserves > 1000){
+      if(boundingCurveAccount.realTokenReserves > 10000){
         console.log("createEvent", event, boundingCurveAccount);
       }
     }
