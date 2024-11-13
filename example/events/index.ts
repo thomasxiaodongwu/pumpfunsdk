@@ -29,6 +29,7 @@ const main = async () => {
     let boundingCurveAccount = await sdk.getBondingCurveAccount(event.mint);
     if(boundingCurveAccount) {
       if(lamportsToSol(boundingCurveAccount.realTokenReserves) > 3000){
+        console.log("lamports", lamportsToSol(boundingCurveAccount.realTokenReserves));
         console.log("createEvent", event, boundingCurveAccount);
       }
     }
