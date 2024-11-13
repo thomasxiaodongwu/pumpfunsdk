@@ -28,8 +28,8 @@ const main = async () => {
   let createEvent = sdk.addEventListener("createEvent", async (event) => {
     let boundingCurveAccount = await sdk.getBondingCurveAccount(event.mint);
     if(boundingCurveAccount) {
-      if(lamportsToSol(boundingCurveAccount.realTokenReserves) > 3000){
-        console.log("lamports", lamportsToSol(boundingCurveAccount.realTokenReserves));
+      if(lamportsToSol(boundingCurveAccount.realSolReserves) > 3000){
+        //console.log("lamports", lamportsToSol(boundingCurveAccount.realTokenReserves));
         console.log("createEvent", event, boundingCurveAccount);
       }
     }
