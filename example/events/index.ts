@@ -26,13 +26,13 @@ const main = async () => {
   let sdk = new PumpFunSDK(provider);
 
   let createEvent = sdk.addEventListener("createEvent", async (event) => {
-    let boundingCurveAccount = await sdk.getBondingCurveAccount(event.mint);
+    console.log("createEvent", event);
+    /*let boundingCurveAccount = await sdk.getBondingCurveAccount(event.mint);
     if(boundingCurveAccount) {
       if(lamportsToSol(boundingCurveAccount.realSolReserves) > 3000){
-        //console.log("lamports", lamportsToSol(boundingCurveAccount.realTokenReserves));
         console.log("createEvent", event, boundingCurveAccount);
       }
-    }
+    }*/
   });
   console.log("createEvent", createEvent);
 
